@@ -1,0 +1,7 @@
+curl \
+-H "Content-Type: application/json" \
+-H "X-Hub-Signature: sha1=b6613cb9fe323f9cbb1ff316d2c6033b6eacc295" \
+--dump-header /dev/stdout \
+-b XDEBUG_SESSION=PHPSTORM \
+-d '{"entry": [{"changes": [{"field": "feed", "value": {"item": "comment", "sender_name": "Pete Testor", "photo": "https://scontent-frx5-1.xx.fbcdn.net/v/t1.0-9/18767809_1683128018663217_7301655788932429217_n.jpg?oh=bc70cae9f1dc42029d16868d11baabac&oe=59B376F7", "comment_id": "296638277456909_297165167404220", "sender_id": 1634549313521088, "post_id": "296336834153720_296638277456909", "verb": "add", "parent_id": "296336834153720_296638277456909", "created_time": 1496156750, "message": "This comment contains a link and a picture. Link: http://hatercater.de/"}}], "id": "296336834153720", "time": 1496156752}], "object": "page"}' \
+https://facebookproxy.hatercater.de

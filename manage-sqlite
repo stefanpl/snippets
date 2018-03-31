@@ -1,0 +1,5 @@
+// Open/create an sqlite database
+sqlite3 filenameIsDatabasename.sqlite
+
+// finish the session
+.exit
