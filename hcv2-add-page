@@ -1,0 +1,6 @@
+curl \
+-H "X-Application-Key: 78dd2435fc9db035315e706466839e68" \
+-H "Content-Type: application/json" \
+-b XDEBUG_SESSION=PHPSTORM \
+-d '{"identifier": "171735909570942"}' \
+127.0.0.1:3009/page
