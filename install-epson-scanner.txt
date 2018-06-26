@@ -1,0 +1,2 @@
+Basically, the first 2 entries here helped making the scanner work:
+https://forum.ubuntuusers.de/topic/epson-iscan-und-ubuntu-17-10-geloest/
