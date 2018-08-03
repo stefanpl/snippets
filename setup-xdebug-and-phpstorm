@@ -1,0 +1,11 @@
+Debugging PHP in PHPStorm
+
+- go to Settings --> PHP --> Debug. Run the 'validate' script. Should show no errors.
+
+- do everything as it says here: https://confluence.jetbrains.com/display/PhpStorm/Zero-configuration+Web+Application+Debugging+with+Xdebug+and+PhpStorm
+
+- be sure to actually LISTEN for incoming connections in PHPstorm
+
+- be sure the requests have the right cookie value set (XDEBUG_SESSION=PHPSTORM)
+
+- find out what's going on, add it to this file
