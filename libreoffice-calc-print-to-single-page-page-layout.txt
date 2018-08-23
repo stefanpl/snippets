@@ -1,0 +1,6 @@
+- open print preview (ctrl shift o)
+- 'Format page'
+- the orientation can be changed in the 'page' tab
+- the 'sheet' tab contains the scaling mode
+- the print range can be chosen by selecting an area, then going to
+  -> format -> print ranges -> define

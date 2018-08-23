@@ -8,4 +8,6 @@ Debugging PHP in PHPStorm
 
 - be sure the requests have the right cookie value set (XDEBUG_SESSION=PHPSTORM)
 
+- if the debugger breaks, but does not highlight the current line: there might be a hint in the "variables" debugger tab: "Can't find a source position. Server with name 'xyz' does not exist." Go to Settings --> PHP --> Servers and make sure the server exists (with correct path mappings)
+
 - find out what's going on, add it to this file
