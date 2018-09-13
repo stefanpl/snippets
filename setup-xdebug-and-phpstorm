@@ -1,5 +1,7 @@
 Debugging PHP in PHPStorm
 
+- make sure a server is added (Settings --> PHP --> Servers)
+
 - go to Settings --> PHP --> Debug. Run the 'validate' script. Should show no errors.
 
 - do everything as it says here: https://confluence.jetbrains.com/display/PhpStorm/Zero-configuration+Web+Application+Debugging+with+Xdebug+and+PhpStorm
