@@ -1,0 +1,8 @@
+/* Hide distracting elements on stackexchange sites */
+
+#sidebar {
+  display: none;
+}
+div[class^="gravatar-wrapper-"] {
+  display: none;
+}

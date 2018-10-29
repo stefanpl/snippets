@@ -3,3 +3,9 @@ sqlite3 filenameIsDatabasename.sqlite
 
 // finish the session
 .exit
+
+// show tables
+.tables
+
+// display table headers
+.headers on
