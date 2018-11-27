@@ -1,0 +1,11 @@
+#!/bin/bash
+
+serverUrl=${SEAFILE_HOST}
+userEmail=${SEAFILE_USER_EMAIL}
+libraryId=
+folderNameInSeafileData=pictures
+
+seafilePath=${HOME}/seafile-data
+fullPath=${seafilePath}/${folderNameInSeafileData}
+mkdir ${fullPath}
+seaf-cli sync -l "${libraryId}" -s  ${serverUrl} -d ${fullPath} -u ${userEmail}

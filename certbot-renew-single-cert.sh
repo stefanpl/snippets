@@ -7,7 +7,7 @@
 # listen [::]:80;
 # listen [::]:443 ssl;
 
-sudo certbot certonly --webroot -w /var/www/trude/test/wordpress -d trude.feierich.de
+sudo certbot certonly --dry-run --webroot -w /var/www/challenge-dummy -d dateiwolke.rarelime.de
 
 # For testing, the --dry-run parameter can be inserted
 
