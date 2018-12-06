@@ -2,6 +2,8 @@
 
 - `docker service ps [service] [service...]` will show the current and desired states of services.
 
+- to read the *docker daemon logs*, issue `journalctl -u docker.service` on a ubuntu system. (otherwise, consult [the docs](https://docs.docker.com/config/daemon/#out-of-memory-exceptions-oome))
+
 If `docker swarm leave` throws a `context deadline exceeded` error, the node will not be able to leave the swarm and join a swarm anew. A solution is presented here:
 https://github.com/moby/moby/issues/25432j
 
