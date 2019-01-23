@@ -1,0 +1,16 @@
+# basic auth. .htpasswd file can be generated using `htpasswd -nb user pass > .htpasswd`
+AuthType Basic
+AuthName "Work in progress"
+AuthUserFile /wherever/is/your/.htpasswd
+Require valid-user
+
+
+RewriteEngine On
+
+# redirect everything to a subdomain
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# redirect everything to https
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
