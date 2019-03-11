@@ -13,6 +13,9 @@ let strLength: number = (<String>someValue).length;
 let strLength: number = (someValue as String).length;
 
 
+// Creating a dictionary
+let persons: { [id: string] : IPerson; } = {};
+
 
 // Indexed access types:
 
