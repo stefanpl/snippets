@@ -1,5 +1,5 @@
 set global slow_query_log = 'ON';
-set global log_queries_not_using_indexes = 'ON'
+set global log_queries_not_using_indexes = 'ON';
 set global slow_query_log_file ='/var/log/mysql/slow-query.log';
 
 # how much time before a query gets logged? (in seconds): 
