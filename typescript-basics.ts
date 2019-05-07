@@ -16,6 +16,9 @@ let strLength: number = (someValue as String).length;
 // Creating a dictionary
 let persons: { [id: string] : IPerson; } = {};
 
+// To use more elaborate mappings, a Record<key, entry> can be used!
+let whatever: Record<validKey, anythingReally> = {};
+
 
 // Indexed access types:
 
