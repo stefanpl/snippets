@@ -10,3 +10,6 @@ define( 'WP_DEBUG_LOG', true );
 // Display everything PHP generates (warnings, errors)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+// Dont render html around error texts
+ini_set('html_errors', false);
