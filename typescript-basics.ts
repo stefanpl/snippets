@@ -67,3 +67,11 @@ type T1 = Exclude<string | number | (() => void), Function>; string | number
 type T1 = Extract<string | number | (() => void), Function>; () => void
 
 type NonNullable<T> = Exclude<T, null | undefined>;
+
+// Extending the window object with new properties:
+declare global {
+  interface Window { 
+    someNewProp: any
+    orSomeString: string
+  }
+}
