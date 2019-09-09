@@ -23,3 +23,6 @@ Re-initializing the swarm can help if any of the services gets stuck in an `assi
 `docker stats` can be used to view information about cpu and memory consumption.
 
 To keep a container running and open with a dummy command, use `tail -f /dev/null`
+
+Missing network when starting containers: 
+https://github.com/docker/compose/issues/5745#issuecomment-370031631
