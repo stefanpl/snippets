@@ -13,3 +13,4 @@ alias w="which"
 alias gir="grep -ir"
 alias gr=" | grep -i"
 alias psa='ps -aux'
+alias rle='readlink -e'
