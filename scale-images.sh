@@ -1,10 +1,21 @@
-#!/bin/bash
+#!/bin/zsh
 
 desiredWidth=1600
 fileExtension=jpg
-targetFolder=_scaled
+targetFolder=scaled
 desiredQuality=75
+skipEmpty=true
 
+imagesToBeScaled=`find . -iname "*.${fileExtension}" -not -path "./${targetFolder}/*" -type f`
 
-find . -maxdepth 1 -mindepth 1 -iname "*.${fileExtension}" -type f -exec \
-  convert "{}" -quality ${desiredQuality} -resize ${desiredWidth} ${targetFolder}/"{}" \;
+while read -r imagePath; do
+  scaledPath="./${targetFolder}/${imagePath}"
+  if [ -f "${scaledPath}" ] && [ ${skipEmpty} = "true" ]; then
+    echo ${scaledPath} exists! >> /dev/null
+  else
+    mkdir -p `dirname "${scaledPath}"`
+    convert "${imagePath}" -quality ${desiredQuality} -resize ${desiredWidth} "${scaledPath}"
+  fi
+done <<< "$imagesToBeScaled"
+
+logSuccess 'Done scaling!'
