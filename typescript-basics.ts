@@ -30,7 +30,13 @@ type foo = {
   c: Array<any>,
 }
 
-type bar = keyof foo;  // a | b | c
+interface Nested {
+  myKey: foo,
+}
+
+type bar = keyof Nested['myKey'];  // a | b | c
+
+function some<T extends bar>(myArr: Array<T>): any {}
 
 type woof = foo[keyof foo]; // number | string | Array<any>
 
