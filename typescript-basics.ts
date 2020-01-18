@@ -19,6 +19,13 @@ let persons: { [id: string] : IPerson; } = {};
 // To use more elaborate mappings, a Record<key, entry> can be used!
 let whatever: Record<validKey, anythingReally> = {};
 
+// Avoid 'before initialized' warnings when using a try-catch:
+let x !: number;
+try {
+  x = someFunction();
+}
+console.log(x);
+
 
 // Indexed access types:
 
