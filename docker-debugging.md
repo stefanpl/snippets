@@ -27,3 +27,6 @@ To keep a container running and open with a dummy command, use `tail -f /dev/nul
 Missing network when starting containers: 
 https://github.com/docker/compose/issues/5745#issuecomment-370031631
 (basically, start with `--force-recreate`)
+
+See what a `docker-compose.yml` looks like after variables have been substituted:
+`docker-compose config`
