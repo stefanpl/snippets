@@ -13,8 +13,23 @@ let strLength: number = (<String>someValue).length;
 let strLength: number = (someValue as String).length;
 
 
+interface ExampleData {
+  name: string,
+  description?: string,
+  tags?: [string],
+  modifiedTimestamp?: number,
+}
+
 // Creating a dictionary
-let persons: { [id: string] : IPerson; } = {};
+let persons: { [id: string] : ExampleData; } = {
+  some: {
+    name: 'woof',
+  },
+  another: {
+    name: 'the alternative one',
+    tags: ['some', 'other', 'thingy'],
+  }
+};
 
 // To use more elaborate mappings, a Record<key, entry> can be used!
 let whatever: Record<validKey, anythingReally> = {};
