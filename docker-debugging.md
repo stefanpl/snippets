@@ -2,6 +2,9 @@
 
 - `docker service ps [service] [service...]` will show the current and desired states of services.
 
+`docker stats` will show resource usage
+`docker system info` shows various info about the current engine
+
 - logs for a service can be obtained with `docker service logs --follow --timestamps`. This will greatly help in **debugging services which refuse to start**!
 
 - to read the *docker daemon logs*, issue `journalctl -u docker.service` on a ubuntu system. (otherwise, consult [the docs](https://docs.docker.com/config/daemon/#out-of-memory-exceptions-oome))
