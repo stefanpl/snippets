@@ -30,5 +30,5 @@ export {
 
 ## … or fix via the command line:
 ```sh
-npx exlint --fix "src/**/*[jt]s" 
+npx eslint --fix "src/**/*[jt]s" 
 ```
