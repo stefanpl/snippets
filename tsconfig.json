@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "*": ["types/*"] },
+    "outDir": "./compiled/",
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "lib": ["es2016", "dom"],
+    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es6",
+    "allowJs": true
+  },
+  "files": [
+    "src/typescript-basics.ts"
+  ]
+}

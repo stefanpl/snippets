@@ -68,6 +68,16 @@ function getPropertyFromObject<T, K extends keyof T>(obj: T, key: K) {
   return obj[key];
 }
 
+// Generic function interface
+//  - as a generic interface:
+interface GenericIdentityFn<T> {
+  (arg: T): T;
+}
+//  - making the function (the only member) itself generic:
+interface GetAnElement {
+  <T>(argument: T[]): T
+}
+
 
 // The declare keyword is used to define variables that originate outside of the TS scope, e.g. in a global
 //  context from a library or <script> tag
@@ -75,22 +85,20 @@ function getPropertyFromObject<T, K extends keyof T>(obj: T, key: K) {
 declare var someLibraryVariabel;
 
 
-// Conditional types:
-
 type ReturnTypeForMyFunction<Input> =
-  Input extends string ? string :
+  Input extends string ? number :
   Input extends number ? number :
   Input extends boolean ? void :
   never;
 
+  // TODO: find out why the return statements need type assertions!
 function getSomeInfo<T extends string | number | boolean>(info: T): ReturnTypeForMyFunction<T> {
   switch (typeof info) {
     case 'string':
-      return;
+      return (undefined as ReturnTypeForMyFunction<T>);
     case 'boolean':
-      return;
+      return (undefined as ReturnTypeForMyFunction<T>);
     case 'number':
-      // Todo: find out why this needs a type assertion
       return 100 as ReturnTypeForMyFunction<T>;
   }
 } 

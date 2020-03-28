@@ -1,0 +1,13 @@
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "class-in-javascript.js",
+  "scripts": {
+    "compile": "npx tsc --project tsconfig.json",
+    "watch": "npx tsc --project tsconfig.json --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
