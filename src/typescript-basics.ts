@@ -163,4 +163,71 @@ const me: Person = {
 }
 // At this point, only dollarsInTheBank can be changed.
 
+// The Partial type will make all properties in another type optional:
+const halfMe: Partial<Person> = {
+  name: 'Meagain',
+};
+
+// An intersection type combines multiple types into one.
+// Any implementing object must contain all fields required by the intersected types.
+type Callable = {
+  call: () => void,
+}
+type CallablePerson = Callable & Person;
+const whatAmI: CallablePerson = {
+  dollarsInTheBank: 999,
+  gender: Gender.male,
+  name: 'The callable boy',
+  call: () => {},
+}
+
+interface Stranger {
+  gender: Gender;
+}
+// A union type describes a value that can take one of several forms:
+type Anybody = Stranger | Person;
+// Only properties that are present in all types of the union can be accessed!
+function sayHi(who: Anybody) {
+  const genderAsString = Gender[who.gender];
+  // @ts-ignore
+  const name = who.name; //this will not work!
+}
+
+// To differentiate between different possible types of a union, a type guard can be used.
+// One way to define a type guard is writing a function which returns a type predicate:
+function isPerson(who: Anybody): who is Person {
+  return !!(who as Person).name;
+}
+// Now, the sayHi method can easily branch out for the different union types:
+function sayHiTyped(who: Anybody) {
+  if (isPerson(who)) {
+    const { name } = who;
+  } else {
+    // who will be typed to Stranger here!
+  }
+}
+
+// An alternative way is using the in operator:
+function sayHiAlsoTyped(who: Anybody) {
+  if ('name' in who) {
+    // Typed to Person
+    const money = who.dollarsInTheBank;
+  } else {
+    // Typed to Stranger
+  }
+}
+
+// Typescript automatically recognizes 'typeof' type guards, but only for the primitives
+// - number
+// - string
+// - boolean
+// - symbol
+function takingStringsAndNumbers(input: string | number) {
+  if (typeof input === 'string') {
+    // correctly typed now!
+    input.split(' ');
+  }
+}
+
+
 // TODO: continue at https://www.typescriptlang.org/docs/handbook/classes.html
