@@ -7,3 +7,8 @@ fi
 
 if [ "${STATUS}" != 200 ] && [ "${STRING}" != "${VALUE}" ]; then
 if [ "${STATUS}" != 200 ] || [ "${STRING}" != "${VALUE}" ]; then
+
+argumentEqualsString() {
+  [[ "${1}" == "someString" ]]
+  return
+}
