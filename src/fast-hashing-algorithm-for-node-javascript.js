@@ -1,1 +1,2 @@
-require('crypto').createHash('sha1').update(data).digest('base64');
+const { createHash } = require('crypto');
+const hashData = (data) => createHash('sha1').update(data).digest('base64');
