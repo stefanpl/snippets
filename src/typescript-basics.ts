@@ -229,5 +229,10 @@ function takingStringsAndNumbers(input: string | number) {
   }
 }
 
+// When working with a string union, we can use this construct to:
+// - check strings at runtime with inputFieldTypes.includes(theString)
+// - do static type checking with InputFieldType
+export const inputFieldTypes = ['select', 'image_swatch', 'text'] as const;
+export type InputFieldType = typeof inputFieldTypes[number];
 
 // TODO: continue at https://www.typescriptlang.org/docs/handbook/classes.html
