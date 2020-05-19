@@ -114,8 +114,7 @@ type T2 = MyExtract<string | number | (() => void), Function>; // () => void
 type MyNonNullable<T> = MyExclude<T, null | undefined>;
 
 // Extending the window object with new properties.
-// Only works in certain environments, so let's ignore the error.
-// @ts-ignore
+// Requires the file to export something, so `export {}` can be a quick fix
 declare global {
   interface Window { 
     someNewProp: any
