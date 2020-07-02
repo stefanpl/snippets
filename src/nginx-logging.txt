@@ -1,0 +1,6 @@
+- First, define the desired log_format inside the `http` block:
+  log_format myformat 'scheme: $scheme port: $server_port';
+  Available variables: http://nginx.org/en/docs/varindex.html
+
+- Now, add the actual log directive inside a `server`block:
+  access_log /dev/stdout myformat;
