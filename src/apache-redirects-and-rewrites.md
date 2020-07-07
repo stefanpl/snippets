@@ -3,9 +3,17 @@ Basically, check [this excellent serverfault answer](https://serverfault.com/que
 Please bear in mind that the __order of rules__ is important! Consider this block, taken from laravel's htaccess:
 
 ```
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
 ```
 
 It means that any URI not matching an actual file will be redirected to the frontend controller (index.php). If you try to add any rule which operates on a 'virtual' (not pointing to a file directly) route *after* this block, __it will never be applied__: The `[L]` flag will prevent any subsequent rules from being parsed.
+
+Force Everything to https:
+```
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+```
