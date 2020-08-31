@@ -6,7 +6,8 @@ if [ "$x" = "valid" ]; then
 fi
 
 if [ "${STATUS}" != 200 ] && [ "${STRING}" != "${VALUE}" ]; then
-if [ "${STATUS}" != 200 ] || [ "${STRING}" != "${VALUE}" ]; then
+# String equality should be done with a single '='!
+if [ "${STATUS}" != 200 ] || [ "${STRING}" = "${VALUE}" ]; then
 
 argumentEqualsString() {
   [[ "${1}" == "someString" ]]
