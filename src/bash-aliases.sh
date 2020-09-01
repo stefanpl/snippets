@@ -17,3 +17,4 @@ alias rle='readlink -e'
 alias ch="curl -IL"
 alias pml="pm2 list"
 alias rmf="rm -rf"
+alias tmp="cd /tmp"
