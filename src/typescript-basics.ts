@@ -234,4 +234,12 @@ function takingStringsAndNumbers(input: string | number) {
 export const inputFieldTypes = ['select', 'image_swatch', 'text'] as const;
 export type InputFieldType = typeof inputFieldTypes[number];
 
+// Overwriting a function:
+function getMoney(asString: false): number;
+function getMoney(asString: true): string;
+function getMoney(asString: boolean): number | string {
+  const money = 100;
+  return asString ? `${money}` : money;
+}
+
 // TODO: continue at https://www.typescriptlang.org/docs/handbook/classes.html
