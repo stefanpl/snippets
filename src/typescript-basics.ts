@@ -1,69 +1,65 @@
 // Video packed with more info about TS than any sane person can handle:
 // https://www.youtube.com/watch?v=hDACN-BGvI8
 
-
 // Sometimes you know more about the type than the compiler.
 // In this case, you can explicitly state the type of any variable by using either of these constructs:
-let someValue: any = 'woof';
+let someValue: any = "woof";
 let strLength: number = (someValue as String).length;
 // alternative syntax:
 // let strLength: number = (<String>someValue).length;
 
-
 interface ExampleData {
-  name: string,
-  description?: string,
-  tags?: string[],
-  modifiedTimestamp?: number,
+  name: string;
+  description?: string;
+  tags?: string[];
+  modifiedTimestamp?: number;
 }
 
 // Creating a dictionary
-let persons: { [id: string] : ExampleData; } = {
+let persons: { [id: string]: ExampleData } = {
   some: {
-    name: 'woof',
+    name: "woof",
   },
   another: {
-    name: 'the alternative one',
-    tags: ['some', 'other', 'thingy'],
-  }
+    name: "the alternative one",
+    tags: ["some", "other", "thingy"],
+  },
 };
-
 
 type ValidKey = string | number;
 // To use more elaborate mappings, a Record<key, entry> can be used!
 let whatever: Record<ValidKey, ExampleData> = {};
 
 // Avoid 'before initialized' warnings when using a try-catch:
-let x !: number;
+let x!: number;
 try {
-  x = getPropertyFromObject({some: 99}, 'some');
+  x = getPropertyFromObject({ some: 99 }, "some");
 } finally {
   // …
 }
 console.log(x);
-
 
 // Indexed access types:
 
 // The `keyof` keyword can be used to access the property names of an object:
 
 type foo = {
-  a: number,
-  b: string,
-  c: Array<any>,
-}
+  a: number;
+  b: string;
+  c: Array<any>;
+};
 
 interface Nested {
-  myKey: foo,
+  myKey: foo;
 }
 
-type bar = keyof Nested['myKey'];  // a | b | c
+type bar = keyof Nested["myKey"]; // a | b | c
 
 function some<T extends bar>(myArr: Array<T>): any {}
 
 type woof = foo[keyof foo]; // number | string | Array<any>
 
-// This can be used to construct a generic getter function: 
+// This can be used to construct a generic getter function:
 function getPropertyFromObject<T, K extends keyof T>(obj: T, key: K) {
   return obj[key];
 }
@@ -75,38 +71,38 @@ interface GenericIdentityFn<T> {
 }
 //  - making the function (the only member) itself generic:
 interface GetAnElement {
-  <T>(argument: T[]): T
+  <T>(argument: T[]): T;
 }
-
 
 // The declare keyword is used to define variables that originate outside of the TS scope, e.g. in a global
 //  context from a library or <script> tag
 
 declare var someLibraryVariabel;
 
+type ReturnTypeForMyFunction<Input> = Input extends string
+  ? number
+  : Input extends number
+  ? number
+  : Input extends boolean
+  ? void
+  : never;
 
-type ReturnTypeForMyFunction<Input> =
-  Input extends string ? number :
-  Input extends number ? number :
-  Input extends boolean ? void :
-  never;
-
-  // TODO: find out why the return statements need type assertions!
-function getSomeInfo<T extends string | number | boolean>(info: T): ReturnTypeForMyFunction<T> {
+// TODO: find out why the return statements need type assertions!
+function getSomeInfo<T extends string | number | boolean>(
+  info: T
+): ReturnTypeForMyFunction<T> {
   switch (typeof info) {
-    case 'string':
-      return (undefined as ReturnTypeForMyFunction<T>);
-    case 'boolean':
-      return (undefined as ReturnTypeForMyFunction<T>);
-    case 'number':
+    case "string":
+      return undefined as ReturnTypeForMyFunction<T>;
+    case "boolean":
+      return undefined as ReturnTypeForMyFunction<T>;
+    case "number":
       return 100 as ReturnTypeForMyFunction<T>;
   }
-} 
-
+}
 
 type MyExclude<T, U> = T extends U ? never : T; // Exclude U-Likes from T
 type MyExtract<T, U> = T extends U ? T : never; // Extract U-Likes from T
-
 
 type T1 = MyExclude<string | number | (() => void), Function>; // string | number
 type T2 = MyExtract<string | number | (() => void), Function>; // () => void
@@ -116,9 +112,9 @@ type MyNonNullable<T> = MyExclude<T, null | undefined>;
 // Extending the window object with new properties.
 // Requires the file to export something, so `export {}` can be a quick fix
 declare global {
-  interface Window { 
-    someNewProp: any
-    orSomeString: string
+  interface Window {
+    someNewProp: any;
+    orSomeString: string;
   }
 }
 
@@ -137,7 +133,7 @@ interface InterfaceForMyFunction {
 // Note: the name of the params does not need to match
 const woof: InterfaceForMyFunction = (haystack, needle) => {
   return haystack.includes(needle);
-}
+};
 
 enum Gender {
   male,
@@ -156,29 +152,29 @@ interface Person {
 
 // Only dollarsInTheBank can be changed with Person objects!
 const me: Person = {
-  name: 'Panepeter',
+  name: "Panepeter",
   gender: Gender.male,
   dollarsInTheBank: 100,
-}
+};
 // At this point, only dollarsInTheBank can be changed.
 
 // The Partial type will make all properties in another type optional:
 const halfMe: Partial<Person> = {
-  name: 'Meagain',
+  name: "Meagain",
 };
 
 // An intersection type combines multiple types into one.
 // Any implementing object must contain all fields required by the intersected types.
 type Callable = {
-  call: () => void,
-}
+  call: () => void;
+};
 type CallablePerson = Callable & Person;
 const whatAmI: CallablePerson = {
   dollarsInTheBank: 999,
   gender: Gender.male,
-  name: 'The callable boy',
+  name: "The callable boy",
   call: () => {},
-}
+};
 
 interface Stranger {
   gender: Gender;
@@ -208,7 +204,7 @@ function sayHiTyped(who: Anybody) {
 
 // An alternative way is using the in operator:
 function sayHiAlsoTyped(who: Anybody) {
-  if ('name' in who) {
+  if ("name" in who) {
     // Typed to Person
     const money = who.dollarsInTheBank;
   } else {
@@ -222,24 +218,33 @@ function sayHiAlsoTyped(who: Anybody) {
 // - boolean
 // - symbol
 function takingStringsAndNumbers(input: string | number) {
-  if (typeof input === 'string') {
+  if (typeof input === "string") {
     // correctly typed now!
-    input.split(' ');
+    input.split(" ");
   }
 }
 
 // When working with a string union, we can use this construct to:
 // - check strings at runtime with inputFieldTypes.includes(theString)
 // - do static type checking with InputFieldType
-export const inputFieldTypes = ['select', 'image_swatch', 'text'] as const;
+export const inputFieldTypes = ["select", "image_swatch", "text"] as const;
 export type InputFieldType = typeof inputFieldTypes[number];
 
-// Overwriting a function:
+// Overloading a function:
 function getMoney(asString: false): number;
 function getMoney(asString: true): string;
 function getMoney(asString: boolean): number | string {
   const money = 100;
   return asString ? `${money}` : money;
 }
+
+// Defining an overloaded type …
+type MyGenericFunction<T> = {
+  (initialValue: T): T;
+  (): T | undefined;
+};
+// … will need a type assertion!
+const fun: MyGenericFunction<string> = ((initialValue?: string) =>
+  initialValue || undefined) as MyGenericFunction<string>;
 
 // TODO: continue at https://www.typescriptlang.org/docs/handbook/classes.html
