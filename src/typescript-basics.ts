@@ -247,4 +247,10 @@ type MyGenericFunction<T> = {
 const fun: MyGenericFunction<string> = ((initialValue?: string) =>
   initialValue || undefined) as MyGenericFunction<string>;
 
+// To use svgs with typescript, declare them globally (e.g. in a custom.d.ts file):
+declare module "*.svg" {
+  const content: any;
+  export default content;
+}
+
 // TODO: continue at https://www.typescriptlang.org/docs/handbook/classes.html
