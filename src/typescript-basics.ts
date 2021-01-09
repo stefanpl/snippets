@@ -40,6 +40,18 @@ try {
 console.log(x);
 
 // Indexed access types:
+enum DataType {
+  "SIMPLE" = "simple",
+  "COMPLEX" = "complex",
+}
+type IndexedType = {
+  [fieldDataType in DataType]: string;
+};
+
+const labelsForDataTypes: IndexedType = {
+  [DataType.COMPLEX]: "Complex Type",
+  [DataType.SIMPLE]: "Simple Type",
+};
 
 // The `keyof` keyword can be used to access the property names of an object:
 
@@ -252,5 +264,14 @@ declare module "*.svg" {
   const content: any;
   export default content;
 }
+
+// Remove certain properties from a pre-defined type:
+interface TypeFromLibrary {
+  doNotOverwrite: number;
+  alsoKeepSecret: number;
+  thisShouldBeModified: number;
+}
+
+type MyOwnType = Omit<TypeFromLibrary, "doNotOverwrite" | "alsoKeepSecret">;
 
 // TODO: continue at https://www.typescriptlang.org/docs/handbook/classes.html
