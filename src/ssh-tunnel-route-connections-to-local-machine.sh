@@ -4,7 +4,7 @@
 # It forwards those connections to the given host/port on the local machine.
 #
 # The script will:
-# 
+#
 # -f go to background
 # -N not execute any ssh commands.
 # The -4 flag forces ssh to use IPV4, because it can fail when using V6
@@ -15,4 +15,4 @@ targetPort=8080
 
 sshServer=hcli
 
-ssh -4 -L ${remotePortToBeFetched}:${targetHost}:${targetPort} ${sshServer} -f -N
+ssh -4 -R ${remotePortToBeFetched}:${targetHost}:${targetPort} ${sshServer} -f -N
