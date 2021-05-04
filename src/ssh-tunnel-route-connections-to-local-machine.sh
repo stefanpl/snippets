@@ -3,6 +3,8 @@
 # This script fetches all connections which are made to a given port on a remote machine.
 # It forwards those connections to the given host/port on the local machine.
 #
+# You can use it, for example, to develop locally using a fixed url that is pointing to a server.
+#
 # The script will:
 #
 # -f go to background

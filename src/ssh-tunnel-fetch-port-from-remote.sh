@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# This script forwards connections from a given local port to an arbitrary host/port on any ssh server.
+# This script forwards local connections to an arbitrary host/port on any ssh server.
+#
+# Use it, for example, to connect to a database running on a server with a local client.
 #
 # The script will:
-# 
+#
 # -f go to background
 # -N not execute any ssh commands.
 # The -4 flag forces ssh to use IPV4, because it can fail when using V6
