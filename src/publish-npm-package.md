@@ -1,4 +1,6 @@
-- Ensure proper package.json. Sample: https://github.com/netzstrategen/merge/blob/master/package.json
+# Publish an npm package
+
+- Ensure proper package.json: [Example](https://github.com/netzstrategen/merge/blob/master/package.json)
 - `npm login`
 - override main module, set up .npmignore: https://github.com/bookercodes/articles/blob/master/how-to-build-and-publish-es6-npm-modules-today-with-babel.md#overriding-the-main-module
 - Push latest changes to master
