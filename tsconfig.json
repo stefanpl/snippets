@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "transpileOnly": true
+  },
   "compilerOptions": {
     "baseUrl": ".",
     "paths": { "*": ["types/*"] },
@@ -12,7 +15,5 @@
     "target": "es6",
     "allowJs": true
   },
-  "files": [
-    "src/typescript-basics.ts"
-  ]
+  "files": ["src/typescript-basics.ts"]
 }
