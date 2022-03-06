@@ -1,6 +1,15 @@
 // A regular observable
-
-import { from, Observable, Observer, of } from "rxjs";
+import {
+  concatAll,
+  from,
+  interval,
+  map,
+  mergeAll,
+  Observable,
+  Observer,
+  of,
+  range,
+} from "rxjs";
 
 let counter = 0;
 
@@ -128,3 +137,53 @@ const fromPromise = from(
 
 fromArray.subscribe(loggingObserver("fromArray"));
 fromPromise.subscribe(loggingObserver("fromPromise"));
+
+// `range` emits a consecutive series of numbers
+const rangeObservable = range(5, 3);
+rangeObservable.subscribe(loggingObserver("range"));
+
+// This will emit an increasing counter.
+// The first value is emitted __after__ the first timeout.
+// Be sure to unsubscribe, since the interval will never stop.
+const intervalObservable = interval(10);
+const sub = intervalObservable.subscribe(loggingObserver("interval"));
+setTimeout(() => sub.unsubscribe(), 40);
+
+// Making the interval a bit more useful by using a map operator.
+const intervalStartingAt100 = interval(10).pipe(map((val) => val + 100));
+const sub2 = intervalObservable.subscribe(
+  loggingObserver("interval starting at 100")
+);
+setTimeout(() => sub2.unsubscribe(), 40);
+
+/**
+ * Higher-order observables:
+ *  Observables returning observables 🤯
+ */
+const fakeHttpGet = (url: string): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const timeout = Math.round(Math.random() * 1000);
+    setTimeout(() => resolve(`Result for: ${url}`), timeout);
+  });
+
+const urlObservable = of("google,de", "bing.de", "ecosia.de");
+
+// For each url, we map to a new observable, created from the promise
+const higherOrderObservable = urlObservable.pipe(
+  map((url) => from(fakeHttpGet(url)))
+);
+
+// This is pretty boring … we get back the inner observables.
+higherOrderObservable.subscribe(loggingObserver("higher order"));
+
+// Now, we create a separate observer for each value from the outer observer.
+//  This works, but the values are treated in a fully isolated manner.
+higherOrderObservable.subscribe({
+  next: (val) => val.subscribe(loggingObserver("inner observer")),
+});
+
+const concatAllObservables = higherOrderObservable.pipe(concatAll());
+concatAllObservables.subscribe(loggingObserver("joining with concatAll"));
+
+const mergeAllObservables = higherOrderObservable.pipe(mergeAll());
+mergeAllObservables.subscribe(loggingObserver("merging with mergeAll"));
