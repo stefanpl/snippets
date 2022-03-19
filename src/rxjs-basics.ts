@@ -187,3 +187,22 @@ concatAllObservables.subscribe(loggingObserver("joining with concatAll"));
 
 const mergeAllObservables = higherOrderObservable.pipe(mergeAll());
 mergeAllObservables.subscribe(loggingObserver("merging with mergeAll"));
+
+/**
+ * Subjects
+ */
+
+// Subjects are multicast Observables.
+// Usually, each Observer has its own execution context of the Observable:
+
+/**
+ * TODO:
+ *  continue with Subjects https://rxjs.dev/guide/subject
+ */
+const unicastObservable = new Observable((subscriber) => {
+  const uniqueValue = Math.random();
+  subscriber.next(uniqueValue);
+});
+
+unicastObservable.subscribe(loggingObserver("unicast 1"));
+unicastObservable.subscribe(loggingObserver("unicast 2"));
