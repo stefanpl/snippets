@@ -245,7 +245,8 @@ export type InputFieldType = typeof inputFieldTypes[number];
 // Overloading a function:
 function getMoney(asString: false): number;
 function getMoney(asString: true): string;
-function getMoney(asString: boolean): number | string {
+function getMoney(asString: boolean, withIban: boolean): object;
+function getMoney(asString: boolean): number | string | object {
   const money = 100;
   return asString ? `${money}` : money;
 }

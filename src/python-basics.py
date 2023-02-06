@@ -3,6 +3,7 @@
 ####
 
 import json
+from typing import Any
 
 # decode
 someJsonString = '{ "some": "value" }'
@@ -31,3 +32,27 @@ anyObject is clonedObj
 
 # True
 anyObject == clonedObj
+
+
+####
+### asserts
+####
+class Company:
+    name: str
+    number_of_employees: int
+
+
+nvon: Company = {
+    "name": "nvon",
+    "number_of_employees": 100,
+}
+
+assert isinstance(nvon, Company), "nvon should be a company"
+
+# checkinf for a list
+
+myArr: Any = [1, 2, 3]
+# no type hints here, since it's Any
+assert isinstance(myArr, list)
+# now we can operate on a list object
+myArr.append(10)
