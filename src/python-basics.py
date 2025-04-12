@@ -56,3 +56,9 @@ myArr: Any = [1, 2, 3]
 assert isinstance(myArr, list)
 # now we can operate on a list object
 myArr.append(10)
+
+## Pretty-printing models
+
+from pprint import pprint
+price = Price.objects.first()
+pprint(vars(price))
